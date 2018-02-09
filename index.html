@@ -32,7 +32,7 @@
 	
 	<!-- Angular -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
-	<script src="./app.js"></script>
+	<script src="Champions.js"></script>
 
 </head>
 
@@ -96,6 +96,10 @@
         </div>    
 
         <hr>
+		
+		<div ng-app="data" ng-controller="Champions">
+			<p>Json des champions :{{champions.content}}</p>
+		</div>
 
         <!-- Footer -->
         <footer>
