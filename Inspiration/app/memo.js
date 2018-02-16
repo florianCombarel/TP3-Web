@@ -1,4 +1,4 @@
- MemoApp.
+ AppMemory.
   directive('memory', function(){
      return {
       templateUrl: './views/memo.html',
@@ -19,7 +19,7 @@
               array[randomIndex] = temporaryValue;
             }
 
-            return array;
+          return array;
           }
 
         $scope.loading = false;
