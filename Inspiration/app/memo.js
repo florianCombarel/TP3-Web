@@ -23,10 +23,6 @@ directive('memory', function(){
       }
 
       $scope.loading = false;
-      $scope.config = {
-        nbcartes : 3
-      };
-
       $scope.startGame = function(){
         $scope.loading = true;
         var promise = $http.get("champions.json");
@@ -94,12 +90,11 @@ directive('memory', function(){
                 var carte = $scope.cartes[carteId];
                 carte.clicked = false;
               }
-              $rootScope.avoidcarteClick = false;;
+              $rootScope.avoidcarteClick = false;
             }, 500);
           }, 1000);
         }
       };
-
     }
   };
 });
