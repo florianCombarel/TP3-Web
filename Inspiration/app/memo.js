@@ -1,5 +1,5 @@
  MemoApp.
-  directive('memo', function(){
+  directive('memory', function(){
      return {
       templateUrl: './views/memo.html',
       controller: function($scope, $rootScope, $http, $timeout) {
@@ -9,14 +9,11 @@
         function shuffle(array) {
             var currentIndex = array.length, temporaryValue, randomIndex;
 
-            // While there remain elements to shuffle...
             while (0 !== currentIndex) {
 
-              // Pick a remaining element...
               randomIndex = Math.floor(Math.random() * currentIndex);
               currentIndex -= 1;
 
-              // And swap it with the current element.
               temporaryValue = array[currentIndex];
               array[currentIndex] = array[randomIndex];
               array[randomIndex] = temporaryValue;
@@ -24,15 +21,15 @@
 
             return array;
           }
-        
+
         $scope.loading = false;
         $scope.config = {
           nbCards : 3
         };
-        
+
         $scope.startGame = function(){
           $scope.loading = true;
-          var promise = $http.get("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=skins,stats&api_key=RGAPI-139c58fe-7f0a-492e-a7dc-b640b9ba406e");
+          var promise = $http.get("champions.json");
           promise.then(function(data){
             var cards = [];
             var champs = data.data.data;
@@ -52,39 +49,10 @@
               }
             }
             $scope.cards = shuffle(cards);
-            // $scope.cards = [
-            //   {
-            //     name: "Ivern",
-            //     url: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ivern_0.jpg"
-            //   },
-            //   {
-            //     name: "Ivern",
-            //     url: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ivern_1.jpg",
-            //     skin: true
-            //   },
-            //   {
-            //     name: "Teemo",
-            //     url: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Teemo_0.jpg"
-            //   },
-            //   {
-            //     name: "Teemo",
-            //     url: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Teemo_1.jpg",
-            //     skin: true
-            //   },
-            //   {
-            //     name: "Taric",
-            //     url: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Taric_0.jpg"
-            //   },
-            //   {
-            //     name: "Taric",
-            //     url: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Taric_1.jpg",
-            //     skin: true
-            //   }
-            // ];
             $scope.loading = false;
           });
         };
-        
+
         $scope.checkIfWin = function(){
           var win = true;
           var i = 0;
@@ -93,13 +61,13 @@
             i++;
           }
           if(win){
-            alert("Vous avez gagné !! ");
+            alert("Youpi ! ");
             $scope.cards = null;
-            
+
           }
         };
-        
-        
+
+
         $scope.check = function(){
           console.log("Check if double matched", $scope.cards);
           var card1 = null;
@@ -133,7 +101,7 @@
             }, 1000);
           }
         };
-        
+
       }
      };
   });
