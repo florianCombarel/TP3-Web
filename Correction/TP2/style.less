@@ -1,0 +1,66 @@
+/*!
+ * Start Bootstrap - Thumbnail Gallery (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+@keyframes dropCards {
+  0% {
+    transform: translate(-1000px, -100% );
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+body {
+    padding-top: 70px ; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+  .thumb{
+    margin-bottom: 30px;
+    animation-name: dropCards;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.8s;
+    max-width: 300px;
+    min-width: 300px;
+    .thumbnail{
+      background-color:black;
+      background-image: url(img/card_back.jpg);
+      background-size: 270px 150px;
+      transition: transform 1s;
+      transition-timing-function: ease-in-out;
+      cursor: pointer;
+      img{
+        opacity:0;
+        transition: opacity 0.1s, transform 0.1s;
+        transition-delay: 0.5s;
+        width:300px;
+        height: 150px;
+      }
+      .champName{
+        opacity:0;
+        transition: opacity 0.1s, transform 0.1s;
+        transition-delay: 0.5s;
+        color:white;
+      }
+      &.clicked, &.matched{
+        transform: rotateY(180deg);
+        img{
+          opacity: 1;
+          transform: rotateY(180deg);
+        }
+        .champName{
+          opacity: 1;
+          transform: rotateY(180deg);
+        }
+      }
+      &.matched{
+        background: green;
+      }
+    }
+  }
+}
+
+footer {
+    margin: 50px 0;
+}
